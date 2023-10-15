@@ -1,10 +1,11 @@
 from flask import Flask, render_template, request, jsonify
-import time
-from cv2dict import ImageAnalyzer
+from image_scanner import ImageScanner
+from image_analyzer import ImageAnalyzer
 
 workingPath = "/home/pepite/orgue/server/static/images/"
 
 app = Flask(__name__)
+iS = ImageScanner(workingPath)
 iA = ImageAnalyzer(workingPath)
 
 @app.route("/")
@@ -13,9 +14,8 @@ def index():
 
 @app.route("/image")
 def image():
-    time.sleep(2)
-    coorDict = iA.createCoorDict(28);
-    print(coorDict)
+    iS.scanImage()
+    coorDict = iA.createCoorDict(28)
     return jsonify(coorDict)
 
  
