@@ -3,41 +3,46 @@ import cv2 as cv
 import os
 import math
 
-def getLatestImagePath(path):
-    valid_files = [os.path.join(path, filename) for filename in os.listdir(path)]
-    latestFile = max(valid_files, key=os.path.getctime)
-    return latestFile
+class ImageAnalyzer:
+    def __init__(self, path):
+        self.path = path
 
-def getCoordinates(file, num):
-    img = cv.imread(file)
-    gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
-    height, width, _ = img.shape
-    minDist = (width + height) / 10
-    features = cv.goodFeaturesToTrack(gray, num, 0.1, minDist)
-    features = np.intp(features)
+    def findLatestImage(self):
+        valid_files = [os.path.join(self.path, filename) for filename in os.listdir(self.path)]
+        latestFile = max(valid_files, key=os.path.getctime)
+        return latestFile
 
-    coordinates = []
-    for i in features:
-        coordinates.append(i.flatten().tolist())
+    def getCoordinates(self, file, num):
+        img = cv.imread(file)
+        gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
+        height, width, _ = img.shape
+        minDist = (width + height) / 10
+        features = cv.goodFeaturesToTrack(gray, num, 0.1, minDist)
+        features = np.intp(features)
 
-    return coordinates
+        coordinates = []
+        for i in features:
+            coordinates.append(i.flatten().tolist())
 
-def createCoorDict(file, num):
-    coordinates = getCoordinates(file, num)
-    distances = [];
-    angles = [];
+        return coordinates
 
-    for currPoint, nextPoint in zip(coordinates, coordinates[1:]):
-        currDistance = math.dist(currPoint, nextPoint)
+    def createCoorDict(self, num):
+        imgPath = self.findLatestImage()
+        coordinates = self.getCoordinates(imgPath, num)
+        distances = [];
+        angles = [];
 
-        currAngle = np.rad2deg(np.arctan2(nextPoint[1] - currPoint[1], nextPoint[0] - currPoint[0]))
-        if (currAngle < -90):
-            currAngle += 360
-        currAngle -= 90
-        currAngle = abs(currAngle)
+        for currPoint, nextPoint in zip(coordinates, coordinates[1:]):
+            currDistance = math.dist(currPoint, nextPoint)
 
-        distances.append(currDistance) 
-        angles.append(currAngle)
+            currAngle = np.rad2deg(np.arctan2(nextPoint[1] - currPoint[1], nextPoint[0] - currPoint[0]))
+            if (currAngle < -90):
+                currAngle += 360
+            currAngle -= 90
+            currAngle = abs(currAngle)
 
-    dict = {'coordinates': coordinates, 'distances': distances, 'angles': angles}
-    return dict
+            distances.append(currDistance) 
+            angles.append(currAngle)
+
+        dict = {'coordinates': coordinates, 'distances': distances, 'angles': angles}
+        return dict

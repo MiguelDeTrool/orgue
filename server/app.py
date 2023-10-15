@@ -1,9 +1,12 @@
 from flask import Flask, render_template, request, jsonify
 import time
-import cv2dict
- 
+from cv2dict import ImageAnalyzer
+
+workingPath = "/home/pepite/orgue/server/static/images/"
+
 app = Flask(__name__)
- 
+iA = ImageAnalyzer(workingPath)
+
 @app.route("/")
 def index():
     return render_template('index.html')
@@ -11,8 +14,7 @@ def index():
 @app.route("/image")
 def image():
     time.sleep(2)
-    imgPath = cv2dict.getLatestImagePath("/home/pepite/orgue/server/static/images/")
-    coorDict = cv2dict.createCoorDict(imgPath, 28);
+    coorDict = iA.createCoorDict(28);
     print(coorDict)
     return jsonify(coorDict)
 
