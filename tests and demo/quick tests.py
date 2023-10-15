@@ -11,5 +11,12 @@
 
 # print(items)
 
-import os
-print(os.listdir("/home/pepite/orgue/server/static/images/"))
+# import os
+# print(os.listdir("/home/pepite/orgue/server/static/images/"))
+
+import time
+import subprocess
+currTime = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+
+subprocess.run(['touch', f'/home/pepite/Pictures/{currTime}.png'])
+subprocess.run(['scanimage', '--format=png', '--resolution=600', f'--o="/home/pepite/Pictures/{currTime}.png'])
