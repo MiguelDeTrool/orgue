@@ -1,0 +1,21 @@
+canvas {
+  box-sizing: border-box;
+  border: 1px solid black;
+}
+
+#main-container {
+  background-image: url('longlegs.jpg');
+  background-size: contain;
+  height: 500px;
+  width: 500px;
+  z-index: 1;
+  background-repeat: no-repeat;
+}
+
+#canvas {
+  width: 100%;
+  height: 100%;
+  left: 0px;
+  top: 0px;
+  z-index: 1;
+}
