@@ -18,7 +18,6 @@ body {
 }
 
 .canvas-container {
-  background-image: url("../images/longlegs500x500.jpg");
   background-size: contain;
   height: 500px;
   width: 500px;

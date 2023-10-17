@@ -44,5 +44,5 @@ class ImageAnalyzer:
             distances.append(currDistance) 
             angles.append(currAngle)
 
-        dict = {'coordinates': coordinates, 'distances': distances, 'angles': angles}
+        dict = {'imgPath': imgPath, 'coordinates': coordinates, 'distances': distances, 'angles': angles}
         return dict
