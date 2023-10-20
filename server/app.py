@@ -14,7 +14,7 @@ def index():
 
 @app.route("/image")
 def image():
-    iS.scanImage()
+    # iS.scanImage()
     coorDict = iA.createCoorDict(28)
     return jsonify(coorDict)
 
