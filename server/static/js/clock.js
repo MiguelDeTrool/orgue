@@ -5,7 +5,8 @@ export const Clock = (subscriberArray) => {
   let ms = 16; // It seems the possible minimum is 16
   let clockId;
   let prevDate;
-  let speedFactor = 1;
+  let fractionalDuration = 0;
+  let speedFactor = 0.25;
 
   const update = (pointsData) => {
     distances = [];
@@ -22,11 +23,13 @@ export const Clock = (subscriberArray) => {
   };
 
   const calculateFractionalDuration = (interval) => {
-    let fractionalDuration =
-      fractionalDuration + distances[noteIndex] / (interval * speedFactor);
+    fractionalDuration =
+      fractionalDuration + (interval * speedFactor) / distances[noteIndex];
     if (fractionalDuration >= 1) {
       noteIndex++;
-      noteIndex % distances.length;
+      if (noteIndex >= distances.length - 1) {
+        noteIndex = 0;
+      }
       fractionalDuration = 0;
     }
     return fractionalDuration;
@@ -37,7 +40,7 @@ export const Clock = (subscriberArray) => {
     clockId = setInterval(() => {
       let currDate = Date.now();
       let interval = currDate - prevDate;
-      let fractionalDuration = calculateFractionalDuration(interval);
+      calculateFractionalDuration(interval);
       _updateSubscribers(_subscribers, fractionalDuration);
       prevDate = currDate;
     }, ms);
