@@ -1,4 +1,4 @@
-export const PageSetup = () => {
+export const PageSetup = (dataProcessor) => {
   let canvasContainer = document.querySelector(".canvas-container");
   let url = document.URL;
 
@@ -12,6 +12,7 @@ export const PageSetup = () => {
       .then((response) => {
         let imgPath = response.imgPath.slice(25);
         canvasContainer.style.backgroundImage = `url(${imgPath})`;
+        dataProcessor.processAndUpdate(response);
       });
   };
 
