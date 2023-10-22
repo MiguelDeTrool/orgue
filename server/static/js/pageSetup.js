@@ -1,4 +1,4 @@
-export const pageSetup = (() => {
+export const PageSetup = () => {
   let canvasContainer = document.querySelector(".canvas-container");
   let url = document.URL;
 
@@ -16,4 +16,4 @@ export const pageSetup = (() => {
   };
 
   return { getJson };
-})();
+};

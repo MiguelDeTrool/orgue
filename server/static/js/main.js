@@ -1,3 +1,4 @@
-import { pageSetup } from "./pageSetup.js";
+import { PageSetup } from "./pageSetup.js";
 
+const pageSetup = PageSetup();
 pageSetup.getJson();
