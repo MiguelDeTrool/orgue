@@ -29,20 +29,5 @@ class ImageAnalyzer:
     def createCoorDict(self, num):
         imgPath = self.findLatestImage()
         coordinates = self.getCoordinates(imgPath, num)
-        distances = [];
-        angles = [];
-
-        for currPoint, nextPoint in zip(coordinates, coordinates[1:]):
-            currDistance = math.dist(currPoint, nextPoint)
-
-            currAngle = np.rad2deg(np.arctan2(nextPoint[1] - currPoint[1], nextPoint[0] - currPoint[0]))
-            if (currAngle < -90):
-                currAngle += 360
-            currAngle -= 90
-            currAngle = abs(currAngle)
-
-            distances.append(currDistance) 
-            angles.append(currAngle)
-
-        dict = {'imgPath': imgPath, 'coordinates': coordinates, 'distances': distances, 'angles': angles}
+        dict = {'imgPath': imgPath, 'coordinates': coordinates}
         return dict

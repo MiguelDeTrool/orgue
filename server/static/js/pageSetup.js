@@ -12,7 +12,7 @@ export const PageSetup = (dataProcessor) => {
       .then((response) => {
         let imgPath = response.imgPath.slice(25);
         canvasContainer.style.backgroundImage = `url(${imgPath})`;
-        dataProcessor.processAndUpdate(response);
+        dataProcessor.processNewDataAndUpdate(response);
       });
   };
 
