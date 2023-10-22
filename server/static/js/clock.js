@@ -36,9 +36,9 @@ export const Clock = (subscriberArray) => {
   };
 
   const startClock = () => {
-    prevDate = Date.now();
+    prevDate = window.performance.now();
     clockId = setInterval(() => {
-      let currDate = Date.now();
+      let currDate = window.performance.now();
       let interval = currDate - prevDate;
       calculateFractionalDuration(interval);
       _updateSubscribers(_subscribers, fractionalDuration);
