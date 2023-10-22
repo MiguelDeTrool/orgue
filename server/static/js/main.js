@@ -1,10 +1,12 @@
 import { PageSetup } from "./pageSetup.js";
 import { DataProcessor } from "./dataProcessor.js";
 import { Clock } from "./clock.js";
+import { CanvasAnimator } from "./canvasAnimator.js";
 
-const clock = Clock([]);
+const canvasAnimator = CanvasAnimator();
+const clock = Clock([canvasAnimator]);
 
-const dataProcessor = DataProcessor([clock]);
+const dataProcessor = DataProcessor([clock, canvasAnimator]);
 
 const pageSetup = PageSetup(dataProcessor);
 pageSetup.getJson();
