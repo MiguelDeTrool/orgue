@@ -15,7 +15,11 @@ export const DataProcessor = (subscriberArray) => {
     let workData = [];
     let sortedCoordinates = _rawData.coordinates.toSorted(
       (currPoint, nextPoint) => {
-        return currPoint[0] > nextPoint[0];
+        if (currPoint[0] > nextPoint[0]) {
+          return 1;
+        } else {
+          return -1;
+        }
       }
     );
 
