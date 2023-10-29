@@ -1,11 +1,15 @@
 export const DataProcessor = (subscriberArray) => {
-  const _subscribers = subscriberArray;
+  const _subscribers = [];
   let _rawData = {};
   let _preppedData = {};
   let sequenceLength = 4;
 
-  const _updateSubscribers = (subscribers) => {
-    subscribers.forEach((subscriber) => {
+  const addSubscriber = (newSubscriber) => {
+    _subscribers.push(newSubscriber);
+  };
+
+  const _updateSubscribers = () => {
+    _subscribers.forEach((subscriber) => {
       // All subscribers must have an update method that can handle the prepped data, like an interface
       subscriber.update(_preppedData);
     });
@@ -63,17 +67,17 @@ export const DataProcessor = (subscriberArray) => {
     return workData;
   };
 
-  const processNewDataAndUpdate = (newRawData) => {
+  const initialize = (newRawData) => {
     _rawData = newRawData;
     _preppedData = _prepareData(_rawData);
-    _updateSubscribers(_subscribers);
+    _updateSubscribers();
   };
 
   const reprocessOldDataAndUpdate = (length) => {
     sequenceLength = parseInt(length);
     _preppedData = _prepareData(_rawData);
-    _updateSubscribers(_subscribers);
+    _updateSubscribers();
   };
 
-  return { processNewDataAndUpdate, reprocessOldDataAndUpdate };
+  return { addSubscriber, initialize, reprocessOldDataAndUpdate };
 };

@@ -7,10 +7,16 @@ import { MidiOutput } from "./midiOutput.js";
 const midiOutput = MidiOutput();
 const canvasAnimator = CanvasAnimator();
 const clock = Clock([canvasAnimator, midiOutput]);
+clock.addSubscriber(canvasAnimator);
+clock.addSubscriber(midiOutput);
 
-const dataProcessor = DataProcessor([clock, canvasAnimator, midiOutput]);
+const dataProcessor = DataProcessor();
+dataProcessor.addSubscriber(clock);
+dataProcessor.addSubscriber(canvasAnimator);
+dataProcessor.addSubscriber(midiOutput);
 
-const pageSetup = PageSetup(dataProcessor);
+const pageSetup = PageSetup();
+pageSetup.addSubscriber(dataProcessor);
 pageSetup.getJson();
 
 setTimeout(clock.startClock, 1000);

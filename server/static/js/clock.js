@@ -1,5 +1,5 @@
-export const Clock = (subscriberArray) => {
-  const _subscribers = subscriberArray;
+export const Clock = () => {
+  const _subscribers = [];
   let distances = [];
   let noteIndex = 0;
   let ms = 16; // It seems the possible minimum is 16
@@ -15,8 +15,12 @@ export const Clock = (subscriberArray) => {
     });
   };
 
-  const _updateSubscribers = (subscribers, fractionalDuration) => {
-    subscribers.forEach((subscriber) => {
+  const addSubscriber = (newSubscriber) => {
+    _subscribers.push(newSubscriber);
+  };
+
+  const _updateSubscribers = (fractionalDuration) => {
+    _subscribers.forEach((subscriber) => {
       // All subscribers must have a tick method that can handle the noteIndex and fractionalDuration, like an interface
       subscriber.tick(noteIndex, fractionalDuration);
     });
@@ -41,7 +45,7 @@ export const Clock = (subscriberArray) => {
       let currDate = window.performance.now();
       let interval = currDate - prevDate;
       calculateFractionalDuration(interval);
-      _updateSubscribers(_subscribers, fractionalDuration);
+      _updateSubscribers(fractionalDuration);
       prevDate = currDate;
     }, ms);
   };
@@ -50,5 +54,5 @@ export const Clock = (subscriberArray) => {
     clearInterval(clockId);
   };
 
-  return { update, startClock, stopClock };
+  return { update, addSubscriber, startClock, stopClock };
 };

@@ -1,6 +1,18 @@
-export const PageSetup = (dataProcessor) => {
+export const PageSetup = (subscriberArray) => {
+  const _subscribers = [];
   let canvasContainer = document.querySelector(".canvas-container");
   let url = document.URL;
+
+  const addSubscriber = (newSubscriber) => {
+    _subscribers.push(newSubscriber);
+  };
+
+  const _updateSubscribers = (responseJSON) => {
+    _subscribers.forEach((subscriber) => {
+      // All subscribers must have an update method that can handle the prepped data, like an interface
+      subscriber.initialize(responseJSON);
+    });
+  };
 
   const getJson = () => {
     fetch(`${url}image`, {
@@ -9,12 +21,12 @@ export const PageSetup = (dataProcessor) => {
       .then((response) => {
         return response.json();
       })
-      .then((response) => {
-        let imgPath = response.imgPath.slice(25);
+      .then((responseJSON) => {
+        let imgPath = responseJSON.imgPath.slice(25);
         canvasContainer.style.backgroundImage = `url(${imgPath})`;
-        dataProcessor.processNewDataAndUpdate(response);
+        _updateSubscribers(responseJSON);
       });
   };
 
-  return { getJson };
+  return { addSubscriber, getJson };
 };
