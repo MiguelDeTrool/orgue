@@ -13,6 +13,7 @@ export const Clock = () => {
     pointsData.forEach((point) => {
       distances.push(point.distance);
     });
+    noteIndex = 0;
   };
 
   const addSubscriber = (newSubscriber) => {
