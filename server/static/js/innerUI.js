@@ -2,23 +2,17 @@ export const IncAndDecNum = (numberSelector, plusSelector, minusSelector) => {
   const number = document.querySelector(numberSelector);
   const plus = document.querySelector(plusSelector);
   const minus = document.querySelector(minusSelector);
-  let maxValue = 12;
-  let minValue = 3;
-  let value = 4;
-  number.value = value;
 
   plus.addEventListener("click", () => {
-    if (value < maxValue) {
-      value++;
-      number.value = value; // Using value for input fiel, change to textContent for normal elements
-    }
+    number.stepUp(1);
+    var event = new Event("input", { bubbles: true });
+    number.dispatchEvent(event);
   });
 
   minus.addEventListener("click", () => {
-    if (value > minValue) {
-      value--;
-      number.value = value;
-    }
+    number.stepDown(1);
+    var event = new Event("input", { bubbles: true });
+    number.dispatchEvent(event);
   });
 
   return {};
