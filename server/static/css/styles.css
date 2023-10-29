@@ -10,6 +10,15 @@ body {
   align-items: center;
 }
 
+.loading-modal {
+  background-color: white;
+  text-align: center;
+  line-height: 100vh;
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+}
+
 .parameter-container {
   display: flex;
   flex-flow: column nowrap;

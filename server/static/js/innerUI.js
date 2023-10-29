@@ -1,4 +1,4 @@
-export const incAndDecNum = (numberSelector, plusSelector, minusSelector) => {
+export const IncAndDecNum = (numberSelector, plusSelector, minusSelector) => {
   const number = document.querySelector(numberSelector);
   const plus = document.querySelector(plusSelector);
   const minus = document.querySelector(minusSelector);
@@ -10,16 +10,26 @@ export const incAndDecNum = (numberSelector, plusSelector, minusSelector) => {
   plus.addEventListener("click", () => {
     if (value < maxValue) {
       value++;
-      number.textContent = value;
+      number.value = value; // Using value for input fiel, change to textContent for normal elements
     }
   });
 
   minus.addEventListener("click", () => {
     if (value > minValue) {
       value--;
-      number.textContent = value;
+      number.value = value;
     }
   });
 
   return {};
+};
+
+export const LoadingModal = (modalSelector) => {
+  const modal = document.querySelector(modalSelector);
+
+  const initialize = () => {
+    modal.style.display = "none";
+  };
+
+  return { initialize };
 };
