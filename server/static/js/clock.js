@@ -55,5 +55,5 @@ export const Clock = () => {
     clearInterval(clockId);
   };
 
-  return { update, addSubscriber, startClock, stopClock };
+  return { updateData, addSubscriber, startClock, stopClock };
 };

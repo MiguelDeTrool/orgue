@@ -45,7 +45,7 @@ export const MidiOutput = () => {
   });
 
   return {
-    update,
+    updateData,
     tick,
     onMIDISuccess,
     onMIDIFailure,

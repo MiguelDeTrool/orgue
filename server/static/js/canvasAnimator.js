@@ -45,5 +45,5 @@ export const CanvasAnimator = () => {
     ctx.stroke();
   };
 
-  return { update, tick };
+  return { updateData, tick };
 };
