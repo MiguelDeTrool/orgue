@@ -17,7 +17,7 @@ export const MidiOutput = () => {
     console.error(`Failed to get MIDI access - ${msg}`);
   };
 
-  const update = (pointsData) => {
+  const updateData = (pointsData) => {
     pitches = [];
     pointsData.forEach((point) => {
       pitches.push(point.pitch);

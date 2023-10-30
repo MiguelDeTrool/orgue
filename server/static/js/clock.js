@@ -8,7 +8,7 @@ export const Clock = () => {
   let fractionalDuration = 0;
   let speedFactor = 0.25;
 
-  const update = (pointsData) => {
+  const updateData = (pointsData) => {
     distances = [];
     pointsData.forEach((point) => {
       distances.push(point.distance);

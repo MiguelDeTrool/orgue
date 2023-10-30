@@ -11,7 +11,7 @@ export const DataProcessor = (subscriberArray) => {
   const _updateSubscribers = () => {
     _subscribers.forEach((subscriber) => {
       // All subscribers must have an update method that can handle the prepped data, like an interface
-      subscriber.update(_preppedData);
+      subscriber.updateData(_preppedData);
     });
   };
 

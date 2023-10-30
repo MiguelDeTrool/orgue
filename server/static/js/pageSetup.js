@@ -1,4 +1,4 @@
-export const PageSetup = (subscriberArray) => {
+export const PageSetup = () => {
   const _subscribers = [];
   let canvasContainer = document.querySelector(".canvas-container");
   let url = document.URL;

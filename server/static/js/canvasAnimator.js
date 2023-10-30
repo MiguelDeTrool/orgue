@@ -2,7 +2,7 @@ export const CanvasAnimator = () => {
   let ctx = document.getElementById("canvas").getContext("2d");
   let coordinates = [];
 
-  const update = (pointsData) => {
+  const updateData = (pointsData) => {
     coordinates = [];
     pointsData.forEach((point) => {
       coordinates.push(point.coordinates);
