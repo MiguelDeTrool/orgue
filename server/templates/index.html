@@ -10,7 +10,7 @@
   </head>
   <body>
     <div class="loading-modal">...</div>
-    <div class="parameter-container">
+    <form class="parameter-container" onsubmit="return false">
       <div>
         <label for="length">Nombre de notes</label>
         <span class="minus">-</span>
@@ -71,7 +71,7 @@
           value="50"
         />
       </div>
-    </div>
+    </form>
     <div class="image-container">
       <div class="canvas-container">
         <canvas id="canvas" width="500px" height="500px"></canvas>
