@@ -2,7 +2,7 @@ export const DataProcessor = (subscriberArray) => {
   const _subscribers = [];
   let _rawData = {};
   let _preppedData = {};
-  let sequenceLength = 4;
+  let sequenceLength;
 
   const addSubscriber = (newSubscriber) => {
     _subscribers.push(newSubscriber);
@@ -73,11 +73,23 @@ export const DataProcessor = (subscriberArray) => {
     _updateSubscribers();
   };
 
+  const updateParameters = (formData) => {
+    if (formData.length != sequenceLength) {
+      reprocessOldDataAndUpdate(formData.length);
+      _updateSubscribers();
+    }
+  };
+
   const reprocessOldDataAndUpdate = (length) => {
     sequenceLength = parseInt(length);
     _preppedData = _prepareData(_rawData);
     _updateSubscribers();
   };
 
-  return { addSubscriber, initialize, reprocessOldDataAndUpdate };
+  return {
+    addSubscriber,
+    initialize,
+    updateParameters,
+    reprocessOldDataAndUpdate,
+  };
 };

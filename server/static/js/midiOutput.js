@@ -4,6 +4,9 @@
 export const MidiOutput = () => {
   let output;
   let pitches;
+  let targetMidiChannel;
+  let volumeCC;
+
   const onMIDISuccess = (midiAccess) => {
     console.log("MIDI ready!");
     console.log(midiAccess);
@@ -22,6 +25,11 @@ export const MidiOutput = () => {
     pointsData.forEach((point) => {
       pitches.push(point.pitch);
     });
+  };
+
+  const updateParameters = (formData) => {
+    targetMidiChannel = formData.instrument;
+    volumeCC = formData.volume;
   };
 
   const tick = (noteIndex, fractionalDuration) => {
@@ -46,6 +54,7 @@ export const MidiOutput = () => {
 
   return {
     updateData,
+    updateParameters,
     tick,
     onMIDISuccess,
     onMIDIFailure,

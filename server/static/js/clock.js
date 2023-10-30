@@ -6,7 +6,11 @@ export const Clock = () => {
   let clockId;
   let prevDate;
   let fractionalDuration = 0;
-  let speedFactor = 0.25;
+  let speedFactor;
+
+  const initialize = (x) => {
+    startClock();
+  };
 
   const updateData = (pointsData) => {
     distances = [];
@@ -14,6 +18,11 @@ export const Clock = () => {
       distances.push(point.distance);
     });
     noteIndex = 0;
+    fractionalDuration = 0;
+  };
+
+  const updateParameters = (formData) => {
+    speedFactor = formData.speed / 100;
   };
 
   const addSubscriber = (newSubscriber) => {
@@ -55,5 +64,12 @@ export const Clock = () => {
     clearInterval(clockId);
   };
 
-  return { updateData, addSubscriber, startClock, stopClock };
+  return {
+    initialize,
+    updateData,
+    updateParameters,
+    addSubscriber,
+    startClock,
+    stopClock,
+  };
 };
