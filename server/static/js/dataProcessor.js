@@ -57,8 +57,7 @@ export const DataProcessor = (subscriberArray) => {
         angle -= 90;
         angle = Math.abs(angle);
 
-        // point.pitch = Math.round(angle / 3 + 24);
-        point.pitch = angle;
+        point.pitch = Math.round(angle / 5 + 36);
       }
 
       workData.push(point);
