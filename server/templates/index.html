@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Animation Orgue de Barbarie</title>
-    <link rel="stylesheet" href="../static/css/reset.css" />
     <link rel="stylesheet" href="../static/css/styles.css" />
     <script type="module" defer src="../static/js/main.js"></script>
   </head>
@@ -13,16 +12,19 @@
     <form class="parameter-container" onsubmit="return false">
       <div>
         <label for="length">Nombre de notes</label>
-        <span class="minus">-</span>
-        <input
-          type="number"
-          id="length"
-          name="length"
-          min="3"
-          max="12"
-          value="4"
-        />
-        <span class="plus">+</span>
+        <div class="number-input">
+          <span class="minus">-</span>
+          <input
+            type="number"
+            id="length"
+            name="length"
+            readonly="true"
+            min="3"
+            max="12"
+            value="4"
+          />
+          <span class="plus">+</span>
+        </div>
       </div>
       <div>
         <div>Instrument</div>
@@ -35,15 +37,15 @@
               value="1"
               checked
             />
-            <label for="organ">Orgue</label>
+            <label for="organ" class="radio-label">Orgue</label>
           </div>
           <div>
             <input type="radio" id="trumpet" name="instrument" value="2" />
-            <label for="trumpet">Trompette</label>
+            <label for="trumpet" class="radio-label">Trompette</label>
           </div>
           <div>
             <input type="radio" id="flute" name="instrument" value="3" />
-            <label for="flute">Flûte</label>
+            <label for="flute" class="radio-label">Flûte</label>
           </div>
         </div>
       </div>
@@ -71,14 +73,14 @@
           value="60"
         />
       </div>
+      <button type="button" onclick="window.location.href='/'">
+        Nouvelle Image
+      </button>
     </form>
     <div class="image-container">
       <div class="canvas-container">
         <canvas id="canvas" width="500px" height="500px"></canvas>
       </div>
-      <form action="/" method="post">
-        <button type="submit">Nouvelle Image</button>
-      </form>
     </div>
   </body>
 </html>

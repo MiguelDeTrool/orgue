@@ -1,13 +1,28 @@
+@import url("reset.css");
+@import url("inputs.css");
+
+:root {
+  --background: #040404;
+  --accent: #f8ce46;
+  --roundedness: 10px;
+}
+
 body {
-  background-color: #040404;
-  color: #7cc676;
-  font-family: monospace;
+  background-color: var(--background);
+  color: var(--accent);
+  font-family: "Public Pixel", monospace;
+  font-size: 24px;
   height: 100vh;
   width: 100vw;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-around;
   align-items: center;
+  user-select: none;
+}
+
+svg {
+  display: none;
 }
 
 .loading-modal {
@@ -28,9 +43,8 @@ body {
 
 .canvas-container {
   background-size: contain;
-  height: 500px;
-  width: 500px;
-  z-index: 1;
+  height: 827px;
+  width: 827px;
   background-repeat: no-repeat;
 }
 
@@ -40,5 +54,4 @@ body {
   height: 100%;
   left: 0px;
   top: 0px;
-  z-index: 1;
 }

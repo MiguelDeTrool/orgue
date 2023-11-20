@@ -1,0 +1,78 @@
+.number-input {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+input[type="number"] {
+  all: unset;
+  width: 80px;
+  text-align: center;
+  appearance: textfield;
+
+  user-select: none;
+  pointer-events: none;
+}
+
+.minus,
+.plus {
+  width: 80px;
+  background-color: var(--accent);
+  color: var(--background);
+  border-radius: var(--roundedness);
+  text-align: center;
+  padding: 4px 0 0 0;
+}
+
+.minus:active,
+.plus:active {
+  filter: brightness(80%);
+}
+
+.instrument-options {
+  display: grid;
+  grid-template-columns: 1;
+  font-size: 80%;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+.radio-label {
+  background-color: var(--background);
+  color: var(--accent);
+}
+
+input[type="radio"]:checked + label {
+  background-color: var(--accent);
+  color: var(--background);
+}
+
+input[type="range"] {
+  appearance: none;
+  display: block;
+  height: 30px;
+  width: 100%;
+  background-color: var(--background);
+  border: 1px solid var(--accent);
+}
+
+input[type="range"]::-moz-range-thumb {
+  opacity: 0;
+}
+
+input[type="range"]::-moz-range-progress {
+  height: 100%;
+  background-color: var(--accent);
+}
+
+button {
+  background-color: var(--accent);
+  color: var(--background);
+  font: inherit;
+  border: thin solid var(--accent);
+  border-radius: var(--roundedness);
+  padding: 30px 10px;
+}
