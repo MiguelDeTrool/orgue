@@ -1,8 +1,20 @@
 import numpy as np
 import cv2 as cv
 import os
+from PIL import Image
+import time
+import subprocess
 
-path = "/home/pepite/orgue/server/static/images/" #Ecrire entre les guillemets l'arborescence du dossier contenant les images
+path = "/home/pepite/Pictures/" # Ecrire entre les guillemets l'arborescence du dossier contenant les images
+
+def scanImage(self):
+  currTime = time.strftime("%Y-%m-%d_%H:%M:%S", time.localtime())
+  img = Image.new("RGB", (32, 32), color="white")
+  imgPath = path + currTime + ".png"
+  img.save(imgPath)
+  subprocess.run(["scanimage", "--format=png", "--resolution=100", "--mode=24bit Color", "-x 210", "-y 210", f"--o={imgPath}"])
+
+scanImage()
 
 valid_files = [os.path.join(path, filename) for filename in os.listdir(path)]
 imgPath = max(valid_files, key=os.path.getctime)
