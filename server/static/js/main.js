@@ -6,6 +6,7 @@ import { MidiOutput } from "./midiOutput.js";
 import { IncAndDecNum, LoadingModal } from "./innerUI.js";
 import { ParameterLinks } from "./parameterLinks.js";
 import { VolumeResetOnIdle } from "./volumeResetOnIdle.js";
+import { SliderDisplay } from "./sliderDisplay.js";
 
 IncAndDecNum("#length", ".plus", ".minus");
 const loadingModal = LoadingModal(".loading-modal");
@@ -28,6 +29,13 @@ parameterLinks.addSubscriber(dataProcessor);
 
 const volumeResetOnIdle = VolumeResetOnIdle();
 volumeResetOnIdle.setup();
+
+const sliderDisplay = SliderDisplay([
+  "#harmonics",
+  "#timbre",
+  "#volume",
+  "#speed",
+]);
 
 const pageSetup = PageSetup();
 pageSetup.addSubscriber(dataProcessor);
