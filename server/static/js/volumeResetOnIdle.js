@@ -8,7 +8,7 @@ export const VolumeResetOnIdle = () => {
 
   function resetTimer() {
     clearTimeout(timer);
-    timer = setTimeout(_resetVolume, 4000);
+    timer = setTimeout(_resetVolume, 40000);
   }
 
   const setup = () => {
