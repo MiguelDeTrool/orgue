@@ -5,11 +5,14 @@ export const ParameterLinks = (formSelector) => {
     _updateSubscribers();
   });
 
+  const numberInput = document.querySelector("#length");
+
   const addSubscriber = (newSubscriber) => {
     _subscribers.push(newSubscriber);
   };
 
-  const initialize = (x) => {
+  const initialize = (jsonData) => {
+    numberInput.setAttribute("max", jsonData.coordinates.length - 1); // Hard coded note length input field
     _updateSubscribers();
   };
 
