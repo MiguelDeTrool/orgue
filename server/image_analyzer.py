@@ -1,7 +1,7 @@
 import numpy as np
 import cv2 as cv
 import os
-import math
+borderRejectionWidth = 20
 
 class ImageAnalyzer:
     def __init__(self, path):
@@ -22,6 +22,9 @@ class ImageAnalyzer:
 
         coordinates = []
         for i in features:
+            # Removes points within certain distance of edge
+            if i[0][0] < borderRejectionWidth or i[0][0] > 827 - borderRejectionWidth or i[0][1] < borderRejectionWidth or i[0][1] > 827 - borderRejectionWidth:
+                continue 
             coordinates.append(i.flatten().tolist())
 
         return coordinates
