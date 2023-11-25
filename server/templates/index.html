@@ -20,7 +20,7 @@
             name="length"
             readonly="true"
             min="3"
-            max="12"
+            max="8"
             value="4"
           />
           <span class="plus">+</span>
@@ -32,22 +32,46 @@
           <div>
             <input
               type="radio"
-              id="organ"
+              id="resonator"
               name="instrument"
-              value="1"
+              value="0"
               checked
             />
-            <label for="organ" class="radio-label">Orgue</label>
+            <label for="resonator" class="radio-label">Résonateur</label>
           </div>
           <div>
-            <input type="radio" id="trumpet" name="instrument" value="2" />
-            <label for="trumpet" class="radio-label">Trompette</label>
+            <input type="radio" id="voice" name="instrument" value="1" />
+            <label for="voice" class="radio-label">Voix</label>
           </div>
           <div>
-            <input type="radio" id="flute" name="instrument" value="3" />
-            <label for="flute" class="radio-label">Flûte</label>
+            <input type="radio" id="chords" name="instrument" value="2" />
+            <label for="chords" class="radio-label">Accords</label>
           </div>
         </div>
+      </div>
+      <div>
+        <label for="harmonics">Harmoniques</label>
+        <input
+          type="range"
+          class="slider"
+          id="harmonics"
+          name="harmonics"
+          min="0"
+          max="99"
+          value="50"
+        />
+      </div>
+      <div>
+        <label for="timbre">Timbre</label>
+        <input
+          type="range"
+          class="slider"
+          id="timbre"
+          name="timbre"
+          min="0"
+          max="99"
+          value="50"
+        />
       </div>
       <div>
         <label for="volume">Volume</label>
@@ -57,8 +81,8 @@
           id="volume"
           name="volume"
           min="0"
-          max="127"
-          value="64"
+          max="99"
+          value="50"
         />
       </div>
       <div>

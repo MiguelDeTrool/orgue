@@ -4,8 +4,6 @@
 export const MidiOutput = () => {
   let output;
   let pitches;
-  let targetMidiChannel;
-  let volumeCC;
 
   const onMIDISuccess = (midiAccess) => {
     console.log("MIDI ready!");
@@ -27,8 +25,10 @@ export const MidiOutput = () => {
   };
 
   const updateParameters = (formData) => {
-    targetMidiChannel = formData.instrument;
-    volumeCC = formData.volume;
+    output.send([0xb0, 4, formData.instrument]);
+    output.send([0xb0, 5, formData.harmonics]);
+    output.send([0xb0, 6, formData.timbre]);
+    output.send([0xb0, 7, formData.volume]);
   };
 
   const tick = (noteIndex, fractionalDuration) => {
