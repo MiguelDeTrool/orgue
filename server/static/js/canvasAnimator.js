@@ -1,6 +1,8 @@
 export const CanvasAnimator = () => {
   let ctx = document.getElementById("canvas").getContext("2d");
   let coordinates = [];
+  const cursor = new Image();
+  cursor.src = "./static/resources/cursor.png";
 
   const updateData = (pointsData) => {
     coordinates = [];
@@ -12,7 +14,9 @@ export const CanvasAnimator = () => {
   const tick = (noteIndex, fractionalDuration) => {
     clearCanvas();
     drawPath();
-    drawBall(noteIndex, fractionalDuration);
+    drawPoints();
+    drawCursor(noteIndex, fractionalDuration);
+    // drawBall(noteIndex, fractionalDuration);
   };
 
   const clearCanvas = () => {
@@ -21,7 +25,6 @@ export const CanvasAnimator = () => {
 
   const drawPath = () => {
     ctx.beginPath();
-    ctx.fillStyle = "blue";
     ctx.moveTo(coordinates[0][0], coordinates[0][1]);
     for (let i = 1; i < coordinates.length; i++) {
       ctx.lineTo(coordinates[i][0], coordinates[i][1]);
@@ -29,20 +32,27 @@ export const CanvasAnimator = () => {
     ctx.stroke();
   };
 
-  const drawBall = (noteIndex, fractionalDuration) => {
-    let ballX =
+  const drawPoints = () => {
+    ctx.beginPath();
+    for (let i = 0; i < coordinates.length; i++) {
+      ctx.clearRect(coordinates[i][0] - 5, coordinates[i][1] - 5, 10, 10);
+      ctx.rect(coordinates[i][0] - 5, coordinates[i][1] - 5, 10, 10);
+    }
+    ctx.stroke();
+  };
+
+  const drawCursor = (noteIndex, fractionalDuration) => {
+    let cursorX =
       coordinates[noteIndex][0] +
       (coordinates[noteIndex + 1][0] - coordinates[noteIndex][0]) *
-        fractionalDuration;
-    let ballY =
+        fractionalDuration -
+      8;
+    let cursorY =
       coordinates[noteIndex][1] +
       (coordinates[noteIndex + 1][1] - coordinates[noteIndex][1]) *
-        fractionalDuration;
-    ctx.fillStyle = "#FFF";
-    ctx.beginPath();
-    ctx.arc(ballX, ballY, 8, 0, 2 * Math.PI);
-    ctx.fill();
-    ctx.stroke();
+        fractionalDuration -
+      8;
+    ctx.drawImage(cursor, cursorX, cursorY, 16, 16);
   };
 
   return { updateData, tick };
