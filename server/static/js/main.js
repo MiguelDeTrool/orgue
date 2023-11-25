@@ -5,6 +5,7 @@ import { CanvasAnimator } from "./canvasAnimator.js";
 import { MidiOutput } from "./midiOutput.js";
 import { IncAndDecNum, LoadingModal } from "./innerUI.js";
 import { ParameterLinks } from "./parameterLinks.js";
+import { VolumeResetOnIdle } from "./volumeResetOnIdle.js";
 
 IncAndDecNum("#length", ".plus", ".minus");
 const loadingModal = LoadingModal(".loading-modal");
@@ -24,6 +25,9 @@ const parameterLinks = ParameterLinks(".parameter-container");
 parameterLinks.addSubscriber(clock);
 parameterLinks.addSubscriber(midiOutput);
 parameterLinks.addSubscriber(dataProcessor);
+
+const volumeResetOnIdle = VolumeResetOnIdle();
+volumeResetOnIdle.setup();
 
 const pageSetup = PageSetup();
 pageSetup.addSubscriber(dataProcessor);
