@@ -4,6 +4,8 @@ export const VolumeResetOnIdle = () => {
 
   const _resetVolume = () => {
     volumeInput.value = 0;
+    var event = new Event("input", { bubbles: true });
+    volumeInput.dispatchEvent(event);
   };
 
   function resetTimer() {
