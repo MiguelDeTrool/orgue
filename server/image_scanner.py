@@ -11,8 +11,8 @@ class ImageScanner:
     img = Image.new("RGB", (32, 32), color="white")
     imgPath = self.path + currTime + ".png"
     img.save(imgPath)
-    subprocess.run(["scanimage", "--format=png", "--resolution=100", "--mode=24bit Color", "-x 210", "-y 210", f"--o={imgPath}"])
-    # subprocess.run(["scanimage", "--format=png", "--resolution=300", "--mode=24bit Color", "--AutoDocumentSize=yes", f"--o={imgPath}"])
+    completedProcess = subprocess.run(["scanimage", "-v", "--device-name=brother5:bus2;dev2", "--format=png", "--resolution=100", "--mode=24bit Color", "-x 210", "-y 210", f"--o={imgPath}"])
+    return completedProcess.returncode
 
 # workingPath = "/home/pepite/Pictures/"
 # iS = ImageScanner(workingPath)
