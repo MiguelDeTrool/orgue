@@ -42,4 +42,7 @@ pageSetup.addSubscriber(dataProcessor);
 pageSetup.addSubscriber(parameterLinks); // parameterLinks must be after dataProcessor so it receives data beforehand
 pageSetup.addSubscriber(clock);
 pageSetup.addSubscriber(loadingModal);
+
+pageSetup.addErrorSubscriber(loadingModal);
+
 pageSetup.getJson();

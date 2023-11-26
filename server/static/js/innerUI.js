@@ -25,5 +25,9 @@ export const LoadingModal = (modalSelector) => {
     modal.style.display = "none";
   };
 
-  return { initialize };
+  const handleError = () => {
+    modal.textContent = "Problem";
+  };
+
+  return { initialize, handleError };
 };

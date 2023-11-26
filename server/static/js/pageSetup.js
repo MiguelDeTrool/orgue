@@ -1,5 +1,6 @@
 export const PageSetup = () => {
   const _subscribers = [];
+  const _errorSubscribers = [];
   let canvasContainer = document.querySelector(".canvas-container");
   let url = document.URL;
 
@@ -7,10 +8,21 @@ export const PageSetup = () => {
     _subscribers.push(newSubscriber);
   };
 
+  const addErrorSubscriber = (newSubscriber) => {
+    _errorSubscribers.push(newSubscriber);
+  };
+
   const _updateSubscribers = (responseJSON) => {
     _subscribers.forEach((subscriber) => {
-      // All subscribers must have an update method that can handle the prepped data, like an interface
+      // All subscribers must have an initialize method that can handle the prepped data, like an interface
       subscriber.initialize(responseJSON);
+    });
+  };
+
+  const _updateErrorSubscribers = (error) => {
+    _errorSubscribers.forEach((errorSubscriber) => {
+      // All subscribers must have a handleError method that can handle the prepped data, like an interface
+      errorSubscriber.handleError(error);
     });
   };
 
@@ -19,14 +31,20 @@ export const PageSetup = () => {
       mode: "cors",
     })
       .then((response) => {
-        return response.json();
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Something went wrong");
       })
       .then((responseJSON) => {
         let imgPath = responseJSON.imgPath.slice(25);
         canvasContainer.style.backgroundImage = `url(${imgPath})`;
         _updateSubscribers(responseJSON);
+      })
+      .catch((error) => {
+        _updateErrorSubscribers(error);
       });
   };
 
-  return { addSubscriber, getJson };
+  return { addSubscriber, addErrorSubscriber, getJson };
 };

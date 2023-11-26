@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, abort, jsonify
 from image_scanner import ImageScanner
 from image_analyzer import ImageAnalyzer
 
@@ -14,7 +14,9 @@ def index():
 
 @app.route("/image")
 def image():
-    # iS.scanImage()
+    returnCode = iS.scanImage()
+    if returnCode != 0:
+        abort(500)
     coorDict = iA.createCoorDict(28)
     return jsonify(coorDict)
 
