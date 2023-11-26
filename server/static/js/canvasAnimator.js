@@ -1,5 +1,6 @@
 export const CanvasAnimator = () => {
-  let ctx = document.getElementById("canvas").getContext("2d");
+  let canvas = document.getElementById("canvas");
+  let ctx = canvas.getContext("2d");
   let coordinates = [];
   const cursor = new Image();
   cursor.src = "./static/resources/cursor.png";
@@ -16,11 +17,10 @@ export const CanvasAnimator = () => {
     drawPath();
     drawPoints();
     drawCursor(noteIndex, fractionalDuration);
-    // drawBall(noteIndex, fractionalDuration);
   };
 
   const clearCanvas = () => {
-    ctx.clearRect(0, 0, 500, 500);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
   };
 
   const drawPath = () => {
