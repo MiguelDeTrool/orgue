@@ -3,7 +3,7 @@ export const CanvasAnimator = () => {
   let ctx = canvas.getContext("2d");
   let coordinates = [];
   const cursor = new Image();
-  cursor.src = "./static/resources/cursor.png";
+  cursor.src = "./static/resources/curseur72ppi.png";
 
   const updateData = (pointsData) => {
     coordinates = [];
@@ -46,13 +46,13 @@ export const CanvasAnimator = () => {
       coordinates[noteIndex][0] +
       (coordinates[noteIndex + 1][0] - coordinates[noteIndex][0]) *
         fractionalDuration -
-      8;
+      17;
     let cursorY =
       coordinates[noteIndex][1] +
       (coordinates[noteIndex + 1][1] - coordinates[noteIndex][1]) *
         fractionalDuration -
-      8;
-    ctx.drawImage(cursor, cursorX, cursorY, 16, 16);
+      17;
+    ctx.drawImage(cursor, cursorX, cursorY, 34, 34);
   };
 
   return { updateData, tick };
