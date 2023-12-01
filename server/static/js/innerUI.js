@@ -25,8 +25,19 @@ export const LoadingModal = (modalSelector) => {
     modal.style.display = "none";
   };
 
-  const handleError = () => {
-    modal.textContent = "Problem";
+  const handleError = (errorMessage) => {
+    modal.innerHTML = "";
+
+    let errorDisplay = document.createElement("div");
+    errorDisplay.textContent = errorMessage;
+    modal.appendChild(errorDisplay);
+
+    let reloadButton = document.createElement("button");
+    reloadButton.addEventListener("click", () => {
+      window.location.reload();
+    });
+    reloadButton.textContent = "réessayer";
+    modal.appendChild(reloadButton);
   };
 
   return { initialize, handleError };

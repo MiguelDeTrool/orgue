@@ -16,7 +16,7 @@ def index():
 def image():
     returnCode = iS.scanImage()
     if returnCode != 0:
-        abort(500)
+        return "", "500 problème analyse image"
     coorDict = iA.createCoorDict(28)
     return jsonify(coorDict)
 

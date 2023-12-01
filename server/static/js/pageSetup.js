@@ -34,7 +34,7 @@ export const PageSetup = () => {
         if (response.ok) {
           return response.json();
         }
-        throw new Error("Something went wrong");
+        throw new Error(response.statusText);
       })
       .then((responseJSON) => {
         let imgPath = responseJSON.imgPath.slice(25);
@@ -42,7 +42,7 @@ export const PageSetup = () => {
         _updateSubscribers(responseJSON);
       })
       .catch((error) => {
-        _updateErrorSubscribers(error);
+        _updateErrorSubscribers(error.message);
       });
   };
 
