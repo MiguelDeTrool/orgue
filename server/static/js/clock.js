@@ -54,8 +54,8 @@ export const Clock = () => {
     clockId = setInterval(() => {
       let currDate = window.performance.now();
       let interval = currDate - prevDate;
-      calculateFractionalDuration(interval);
       _updateSubscribers(fractionalDuration);
+      calculateFractionalDuration(interval);
       prevDate = currDate;
     }, ms);
   };
