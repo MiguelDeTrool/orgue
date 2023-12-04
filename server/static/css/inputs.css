@@ -20,9 +20,10 @@ input[type="number"] {
   width: 80px;
   background-color: var(--accent);
   color: var(--background);
-  border-radius: var(--roundedness);
+  box-sizing: border-box;
+  border: double 6px var(--background);
   text-align: center;
-  padding: 4px 0 0 0;
+  padding: 0px 0 0 0;
 }
 
 .minus:active,
@@ -31,23 +32,21 @@ input[type="number"] {
 }
 
 .instrument-options {
+  box-sizing: border-box;
+  height: 80%;
+  padding: 10px 0px;
   display: grid;
   grid-template-columns: 1;
-  font-size: 80%;
+  grid-template-rows: 1fr 1fr 1fr;
 }
 
 input[type="radio"] {
+  box-sizing: border-box;
   display: none;
 }
 
-.radio-label {
-  background-color: var(--background);
-  color: var(--accent);
-}
-
 input[type="radio"]:checked + label {
-  background-color: var(--accent);
-  color: var(--background);
+  border: solid 2px var(--accent);
 }
 
 input[type="range"] {
@@ -68,11 +67,16 @@ input[type="range"]::-moz-range-progress {
   background-color: var(--accent);
 }
 
-button {
+.refresh-button-container {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+
+.refresh-button-container > button {
   background-color: var(--accent);
   color: var(--background);
   font: inherit;
-  border: thin solid var(--accent);
-  border-radius: var(--roundedness);
-  padding: 30px 10px;
+  border: double 6px var(--background);
+  padding: 20px 5px;
 }

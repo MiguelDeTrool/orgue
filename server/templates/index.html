@@ -11,23 +11,6 @@
     <div class="loading-modal"><div class="loading-spinner"></div></div>
     <form class="parameter-container" onsubmit="return false">
       <div>
-        <label for="length">Nombre de notes</label>
-        <div class="number-input">
-          <span class="minus">-</span>
-          <!-- max attribute needs to be set programmatically -->
-          <input
-            type="number"
-            id="length"
-            name="length"
-            readonly="true"
-            min="3"
-            max="0"
-            value="4"
-          />
-          <span class="plus">+</span>
-        </div>
-      </div>
-      <div>
         <div>Instrument</div>
         <div class="instrument-options">
           <div>
@@ -51,34 +34,38 @@
         </div>
       </div>
       <div>
-        <label for="harmonics">Harmoniques</label>
-        <div></div>
+        <label for="length">Nombre de notes : </label>
+        <div class="number-input">
+          <span class="minus">-</span>
+          <!-- max attribute needs to be set programmatically -->
+          <input
+            type="number"
+            id="length"
+            name="length"
+            readonly="true"
+            min="3"
+            max="0"
+            value="4"
+          />
+          <span class="plus">+</span>
+        </div>
+      </div>
+      <div>
+        <label for="">Vitesse : </label>
+        <span></span>
         <input
           type="range"
           class="slider"
-          id="harmonics"
-          name="harmonics"
-          min="0"
+          id="speed"
+          name="speed"
+          min="10"
           max="99"
           value="50"
         />
       </div>
       <div>
-        <label for="timbre">Timbre</label>
-        <div></div>
-        <input
-          type="range"
-          class="slider"
-          id="timbre"
-          name="timbre"
-          min="0"
-          max="99"
-          value="50"
-        />
-      </div>
-      <div>
-        <label for="volume">Volume</label>
-        <div></div>
+        <label for="volume">Volume : </label>
+        <span></span>
         <input
           type="range"
           class="slider"
@@ -90,21 +77,37 @@
         />
       </div>
       <div>
-        <label for="">Vitesse</label>
-        <div></div>
+        <label for="harmonics">Harmoniques : </label>
+        <span></span>
         <input
           type="range"
           class="slider"
-          id="speed"
-          name="speed"
-          min="10"
+          id="harmonics"
+          name="harmonics"
+          min="0"
           max="99"
           value="50"
         />
       </div>
-      <button type="button" onclick="window.location.href='/'">
-        Nouvelle Image
-      </button>
+      <div>
+        <label for="timbre">Timbre : </label>
+        <span></span>
+        <input
+          type="range"
+          class="slider"
+          id="timbre"
+          name="timbre"
+          min="0"
+          max="99"
+          value="50"
+        />
+      </div>
+
+      <div class="refresh-button-container">
+        <button type="button" onclick="window.location.href='/'">
+          Nouvelle Image
+        </button>
+      </div>
     </form>
     <div class="canvas-container">
       <canvas id="canvas" width="827px" height="827px"></canvas>

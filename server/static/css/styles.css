@@ -8,16 +8,13 @@
 }
 
 body {
-  background-color: var(--background);
+  /* background-color: var(--background); */
+  background-image: url("/static/resources/InterfaceEdit-72ppi.png");
   color: var(--accent);
   font-family: "Pixelify Sans", monospace;
-  font-size: 24px;
+  font-size: 28px;
   height: 100vh;
   width: 100vw;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-around;
-  align-items: center;
   user-select: none;
 }
 
@@ -32,9 +29,8 @@ svg {
   height: 100vh;
   width: 100vw;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
 .loading-spinner {
@@ -57,13 +53,28 @@ svg {
 }
 
 .parameter-container {
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: space-around;
-  height: 827px;
+  box-sizing: border-box;
+  position: absolute;
+  top: 173px;
+  left: 111px;
+  height: 818px;
+  width: 365px;
+  display: grid;
+  grid-template-rows: 216px 1fr 1fr 1fr 1fr 1fr 137px;
+  grid-template-columns: 1fr;
+}
+
+.parameter-container > * {
+  box-sizing: border-box;
+  padding: 5px 30px;
+  border: solid 2px var(--accent);
 }
 
 .canvas-container {
+  mix-blend-mode: multiply;
+  position: absolute;
+  top: 201px;
+  left: 779px;
   height: 827px;
   width: 827px;
   background-size: contain;
