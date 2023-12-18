@@ -1,5 +1,6 @@
 @import url("reset.css");
 @import url("inputs.css");
+@import url("loading.css");
 
 :root {
   --background: #040404;
@@ -8,7 +9,6 @@
 }
 
 body {
-  /* background-color: var(--background); */
   background-image: url("/static/resources/InterfaceEdit-72ppi.png");
   color: var(--accent);
   font-family: "Pixelify Sans", monospace;
@@ -20,36 +20,6 @@ body {
 
 svg {
   display: none;
-}
-
-.loading-modal {
-  background-color: var(--background);
-  color: var(--accent);
-  position: absolute;
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.loading-spinner {
-  border: 16px solid var(--background);
-  border-top: 16px solid var(--accent);
-  border-bottom: 16px solid var(--accent);
-  border-radius: 50%;
-  width: 120px;
-  height: 120px;
-  animation: spin 2s linear infinite;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
 }
 
 .parameter-container {
@@ -71,14 +41,13 @@ svg {
 }
 
 .canvas-container {
-  mix-blend-mode: multiply;
+  /* mix-blend-mode: multiply; */
   position: absolute;
+  z-index: auto;
   top: 201px;
   left: 779px;
   height: 827px;
   width: 827px;
-  background-size: contain;
-  background-repeat: no-repeat;
 }
 
 #canvas {

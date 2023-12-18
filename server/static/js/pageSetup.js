@@ -37,8 +37,6 @@ export const PageSetup = () => {
         throw new Error(response.statusText);
       })
       .then((responseJSON) => {
-        let imgPath = responseJSON.imgPath.slice(25);
-        canvasContainer.style.backgroundImage = `url(${imgPath})`;
         _updateSubscribers(responseJSON);
       })
       .catch((error) => {

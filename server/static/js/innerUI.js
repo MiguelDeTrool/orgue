@@ -18,26 +18,27 @@ export const IncAndDecNum = (numberSelector, plusSelector, minusSelector) => {
   return {};
 };
 
-export const LoadingModal = (modalSelector) => {
-  const modal = document.querySelector(modalSelector);
+export const Loading = () => {
+  const canvasContainer = document.querySelector(".canvas-container");
+  const progressBar = canvasContainer.querySelector(".progress-bar");
+  const reloadButtonContainer = canvasContainer.querySelector(
+    ".reload-button-container"
+  );
+  const errorDisplay = canvasContainer.querySelector(".error-display");
 
-  const initialize = () => {
-    modal.style.display = "none";
+  const initialize = (responseJSON) => {
+    let imgPath = responseJSON.imgPath.slice(25);
+    canvasContainer.style.backgroundImage = `url(${imgPath})`;
+    progressBar.style.display = "none";
   };
 
   const handleError = (errorMessage) => {
-    modal.innerHTML = "";
-
-    let errorDisplay = document.createElement("div");
+    progressBar.style.display = "none";
+    canvasContainer.style.backgroundImage = `url(
+      "/static/resources/BackgroundError-72ppi.png"
+    )`;
     errorDisplay.textContent = errorMessage;
-    modal.appendChild(errorDisplay);
-
-    let reloadButton = document.createElement("button");
-    reloadButton.addEventListener("click", () => {
-      window.location.reload();
-    });
-    reloadButton.textContent = "réessayer";
-    modal.appendChild(reloadButton);
+    reloadButtonContainer.style.display = "flex";
   };
 
   return { initialize, handleError };

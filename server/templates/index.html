@@ -8,7 +8,6 @@
     <script type="module" defer src="../static/js/main.js"></script>
   </head>
   <body>
-    <div class="loading-modal"><div class="loading-spinner"></div></div>
     <form class="parameter-container" onsubmit="return false">
       <div>
         <div>Instrument</div>
@@ -103,7 +102,7 @@
         />
       </div>
 
-      <div class="refresh-button-container">
+      <div class="new-image-button-container">
         <button type="button" onclick="window.location.href='/'">
           Nouvelle Image
         </button>
@@ -111,6 +110,13 @@
     </form>
     <div class="canvas-container">
       <canvas id="canvas" width="827px" height="827px"></canvas>
+      <div class="progress-bar"><div class="progress"></div></div>
+      <div class="reload-button-container">
+        <div class="error-display"></div>
+        <button type="button" onclick="window.location.href='/'">
+          RECHARGER
+        </button>
+      </div>
     </div>
   </body>
 </html>

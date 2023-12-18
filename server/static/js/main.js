@@ -3,13 +3,13 @@ import { DataProcessor } from "./dataProcessor.js";
 import { Clock } from "./clock.js";
 import { CanvasAnimator } from "./canvasAnimator.js";
 import { MidiOutput } from "./midiOutput.js";
-import { IncAndDecNum, LoadingModal } from "./innerUI.js";
+import { IncAndDecNum, Loading } from "./innerUI.js";
 import { ParameterLinks } from "./parameterLinks.js";
 import { VolumeResetOnIdle } from "./volumeResetOnIdle.js";
 import { SliderDisplay } from "./sliderDisplay.js";
 
 IncAndDecNum("#length", ".plus", ".minus");
-const loadingModal = LoadingModal(".loading-modal");
+const loading = Loading();
 
 const midiOutput = MidiOutput();
 const canvasAnimator = CanvasAnimator();
@@ -38,11 +38,11 @@ const sliderDisplay = SliderDisplay([
 ]);
 
 const pageSetup = PageSetup();
+pageSetup.addSubscriber(loading);
 pageSetup.addSubscriber(dataProcessor);
 pageSetup.addSubscriber(parameterLinks); // parameterLinks must be after dataProcessor so it receives data beforehand
 pageSetup.addSubscriber(clock);
-pageSetup.addSubscriber(loadingModal);
 
-pageSetup.addErrorSubscriber(loadingModal);
+pageSetup.addErrorSubscriber(loading);
 
 pageSetup.getJson();
