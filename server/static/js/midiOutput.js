@@ -11,6 +11,7 @@ export const MidiOutput = () => {
     output = midiAccess.outputs.get(
       "HyxW3R3rLQzQ2FV3MnoXT3ehgBHZoB0sb1OlF/3hLq8="
     ); // Hard coded ALSA midi output ID
+    output.send([0xb0, 7, 0]); // Set volume to 0 at creation on page load
   };
 
   const onMIDIFailure = (msg) => {
