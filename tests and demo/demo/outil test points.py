@@ -16,7 +16,7 @@ def scanImage():
 
 # scanImage()
 
-maskImage = cv.imread("/home/miguel/DIY stuff/orgue/server/static/resources/mask.png")
+maskImage = cv.imread("server/static/resources/mask.png")
 maskImage = cv.cvtColor(maskImage, cv.COLOR_BGR2GRAY)
 
 valid_files = [os.path.join(path, filename) for filename in os.listdir(path)]
