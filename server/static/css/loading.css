@@ -6,7 +6,7 @@
 
 .progress-bar {
   /* display: none; */
-  background-color: var(--accent);
+  background-color: #fff;
   color: var(--background);
   box-sizing: border-box;
   border: double 6px var(--background);
@@ -109,10 +109,10 @@
 
 .reload-button-container > button {
   background-color: var(--background);
-  color: var(--accent);
+  color: #fff;
   font: inherit;
   box-sizing: border-box;
-  border: double 6px var(--accent);
+  border: double 6px #fff;
   width: 22%;
   padding: 2px 0px;
 }
