@@ -25,23 +25,27 @@ svg {
 .parameter-container {
   box-sizing: border-box;
   position: absolute;
-  top: 173px;
-  left: 111px;
-  height: 818px;
+  top: 169px;
+  left: 149px;
+  height: 817px;
   width: 365px;
   display: grid;
-  grid-template-rows: 216px 1fr 1fr 1fr 1fr 1fr 137px;
+  grid-template-rows: 204px 96px 93px 96px 92px 98px 1fr;
   grid-template-columns: 1fr;
 }
 
 .parameter-container > * {
-  box-sizing: border-box;
-  padding: 5px 30px;
-  border: solid 2px var(--accent);
+  /* box-sizing: border-box; */
+  padding: 6px 36px 0px 30px;
+}
+
+.instrument-title {
+  padding-top: 5px;
+  padding-bottom: 16px;
 }
 
 .canvas-container {
-  /* mix-blend-mode: multiply; */
+  mix-blend-mode: multiply;
   position: absolute;
   z-index: auto;
   top: 201px;

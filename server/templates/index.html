@@ -9,8 +9,8 @@
   </head>
   <body>
     <form class="parameter-container" onsubmit="return false">
-      <div>
-        <div>Instrument</div>
+      <div class="instrument-container">
+        <div class="instrument-title">Instrument :</div>
         <div class="instrument-options">
           <div>
             <input
@@ -20,17 +20,30 @@
               value="0"
               checked
             />
-            <label for="resonator" class="radio-label">Résonateur</label>
+            <label for="resonator" class="radio-label">- Résonateur</label>
           </div>
           <div>
             <input type="radio" id="voice" name="instrument" value="1" />
-            <label for="voice" class="radio-label">Voix</label>
+            <label for="voice" class="radio-label">- Voix</label>
           </div>
           <div>
             <input type="radio" id="chords" name="instrument" value="2" />
-            <label for="chords" class="radio-label">Accords</label>
+            <label for="chords" class="radio-label">- Accords</label>
           </div>
         </div>
+      </div>
+      <div class="volume-container slider-container">
+        <label for="volume">Volume : </label>
+        <span></span>
+        <input
+          type="range"
+          class="slider"
+          id="volume"
+          name="volume"
+          min="0"
+          max="99"
+          value="50"
+        />
       </div>
       <div>
         <label for="length">Nombre de notes : </label>
@@ -49,7 +62,7 @@
           <span class="plus">+</span>
         </div>
       </div>
-      <div>
+      <div class="speed-container slider-container">
         <label for="">Vitesse : </label>
         <span></span>
         <input
@@ -62,20 +75,7 @@
           value="50"
         />
       </div>
-      <div>
-        <label for="volume">Volume : </label>
-        <span></span>
-        <input
-          type="range"
-          class="slider"
-          id="volume"
-          name="volume"
-          min="0"
-          max="99"
-          value="50"
-        />
-      </div>
-      <div>
+      <div class="harmonics-container slider-container">
         <label for="harmonics">Harmoniques : </label>
         <span></span>
         <input
@@ -88,7 +88,7 @@
           value="50"
         />
       </div>
-      <div>
+      <div class="timbre-container slider-container">
         <label for="timbre">Timbre : </label>
         <span></span>
         <input

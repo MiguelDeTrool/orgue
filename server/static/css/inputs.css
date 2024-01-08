@@ -1,4 +1,37 @@
+.instrument-options {
+  box-sizing: border-box;
+  height: 82%;
+  padding: 6px 0px;
+  display: grid;
+  grid-template-columns: 1;
+  grid-template-rows: 1fr 1fr 1fr;
+}
+
+.instrument-title {
+  text-decoration-line: underline;
+  text-decoration-thickness: 3px;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+input[type="radio"] + label {
+  display: block;
+  width: 97%;
+  padding: 2px 5px;
+  border: solid 2px #0000;
+}
+
+input[type="radio"]:checked + label {
+  border: solid 2px var(--accent);
+}
+
 .number-input {
+  box-sizing: border-box;
+  border: solid 2px var(--accent);
+  margin-top: 8px;
+  padding: 2px;
   width: 100%;
   height: 40px;
   display: flex;
@@ -21,9 +54,9 @@ input[type="number"] {
   background-color: var(--accent);
   color: var(--background);
   box-sizing: border-box;
-  border: double 6px var(--background);
+  /* border: double 6px var(--background); */
   text-align: center;
-  padding: 0px 0 0 0;
+  padding: 2px 0 0 0;
 }
 
 .minus:active,
@@ -31,27 +64,10 @@ input[type="number"] {
   filter: brightness(80%);
 }
 
-.instrument-options {
-  box-sizing: border-box;
-  height: 80%;
-  padding: 10px 0px;
-  display: grid;
-  grid-template-columns: 1;
-  grid-template-rows: 1fr 1fr 1fr;
-}
-
-input[type="radio"] {
-  box-sizing: border-box;
-  display: none;
-}
-
-input[type="radio"]:checked + label {
-  border: solid 2px var(--accent);
-}
-
 input[type="range"] {
   appearance: none;
   display: block;
+  margin-top: 13px;
   height: 30px;
   width: 100%;
   background-color: var(--background);
@@ -78,5 +94,5 @@ input[type="range"]::-moz-range-progress {
   color: var(--background);
   font: inherit;
   border: double 6px var(--background);
-  padding: 20px 5px;
+  padding: 11px 22px;
 }
