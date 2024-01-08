@@ -48,10 +48,10 @@ svg {
   mix-blend-mode: multiply;
   position: absolute;
   z-index: auto;
-  top: 201px;
-  left: 779px;
-  height: 827px;
-  width: 827px;
+  top: 197px;
+  left: 817px;
+  height: 828px;
+  width: 828px;
 }
 
 #canvas {
