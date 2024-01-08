@@ -4,9 +4,8 @@ import os
 from PIL import Image
 import time
 import subprocess
-borderRejectionWidth = 20
 
-path = "/home/pepite/orgue/server/static/images" # Ecrire entre les guillemets l'arborescence du dossier contenant les images
+path = "server/static/images" # Ecrire entre les guillemets l'arborescence du dossier contenant les images
 
 def scanImage():
   currTime = time.strftime("%Y-%m-%d_%H:%M:%S", time.localtime())
@@ -17,17 +16,23 @@ def scanImage():
 
 # scanImage()
 
+maskImage = cv.imread("/home/miguel/DIY stuff/orgue/server/static/resources/mask.png")
+maskImage = cv.cvtColor(maskImage, cv.COLOR_BGR2GRAY)
+
 valid_files = [os.path.join(path, filename) for filename in os.listdir(path)]
+# print(valid_files)
 imgPath = max(valid_files, key=os.path.getctime)
 img = cv.imread(imgPath)
 gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
+blur = cv.blur(gray, (20, 20))
+denoise = cv.fastNlMeansDenoising(gray, None, 9) # h over 10 seems to make cancel operation
 height, width, _ = img.shape
 
 # Choisir ici la distance minimum en fonction des dimensions de l'image
 distanceMinimum = (width + height) / 30
 
 # Choisir ici toutes les autres options
-corners = cv.goodFeaturesToTrack(gray, 16, 0.1, distanceMinimum, blockSize=9)
+corners = cv.goodFeaturesToTrack(denoise, 100, 0.1, distanceMinimum, blockSize=9, mask=maskImage)
 # La doc de cette fonction dans ces deux liens :
 # https://docs.opencv.org/4.x/d4/d8c/tutorial_py_shi_tomasi.html
 # https://docs.opencv.org/4.x/dd/d1a/group__imgproc__feature.html#ga1d6bb77486c8f92d79c8793ad995d541
@@ -36,15 +41,29 @@ corners = np.intp(corners)
 
 coordinates = []
 for i in corners:
-    if i[0][0] < borderRejectionWidth or i[0][0] > 827 - borderRejectionWidth or i[0][1] < borderRejectionWidth or i[0][1] > 827 - borderRejectionWidth:
-       continue
     coordinates.append(i.flatten())
 
-print(coordinates)
+# print(coordinates)
+
+font                   = cv.FONT_HERSHEY_SIMPLEX
+bottomLeftCornerOfText = (10,500)
+fontScale              = 1
+fontColor              = (255,255,255)
+thickness              = 1
+lineType               = 2
+
+i = 0
 
 for currPoint, nextPoint in zip(coordinates, coordinates[1:]):
-    cv.arrowedLine(img, currPoint, nextPoint, (0, 255, 0), thickness=3,)
-    cv.circle(img, currPoint, 2, 255, -1)
+    # cv.putText(img, i, 
+    # bottomLeftCornerOfText, 
+    # font, 
+    # fontScale,
+    # fontColor,
+    # thickness,
+    # lineType)
+    cv.circle(img, currPoint, 12, 255, -1)
+    i = i + 1
 
 cv.imshow("image", img)
 cv.waitKey(0)
