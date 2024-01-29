@@ -18,8 +18,7 @@ class ImageAnalyzer:
         img = cv.imread(file)
         gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
         denoise = cv.fastNlMeansDenoising(gray, None, 9) # h over 10 seems to cancel operation
-        height, width, _ = img.shape
-        minDist = (width + height) / 10
+        minDist = 50
         features = cv.goodFeaturesToTrack(denoise, num, 0.1, minDist, mask=maskImage)
         features = np.intp(features)
 
