@@ -15,10 +15,12 @@ def index():
 @app.route("/image")
 def image():
     returnCode = iS.scanImage()
-    if returnCode != 0:
-        return "", "500 problème analyse image"
-    coorDict = iA.createCoorDict(28)
-    return jsonify(coorDict)
+    match returnCode:
+        case 0:
+            coorDict = iA.createCoorDict(28)
+            return jsonify(coorDict)
+        case 7:
+            return "", "500 Partition non-detectée"
 
  
 if __name__ == '__main__':
