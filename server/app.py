@@ -16,11 +16,15 @@ def index():
 def image():
     returnCode = iS.scanImage()
     match returnCode:
-        case 0:
-            coorDict = iA.createCoorDict(28)
-            return jsonify(coorDict)
+        case 6:
+            return "", "500 Blocage de l'appareil de capture"
         case 7:
             return "", "500 Partition non-detectée"
+        case 0:
+            coorDict = iA.createCoorDict(28)
+            if (len(coorDict) < 4):
+                return "", "500 Pas assez de points détectés"
+            return jsonify(coorDict)
 
  
 if __name__ == '__main__':
